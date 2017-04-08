@@ -15,5 +15,8 @@
     "utils"
   ],
   "author": "NickMastersr",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ramda": "^0.23.0"
+  }
 }

@@ -1,0 +1,10 @@
+[options]
+module.name_mapper.extension='less' -> '<PROJECT_ROOT>/src/util/stub/CssModuleMock.js'
+module.name_mapper.extension='styl' -> '<PROJECT_ROOT>/src/util/stub/CssModuleMock.js'
+
+esproposal.decorators=ignore
+unsafe.enable_getters_and_setters=true
+
+module.system.node.resolve_dirname=src
+module.system.node.resolve_dirname=node_modules
+#@formatter:on

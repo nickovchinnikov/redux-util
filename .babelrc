@@ -1,0 +1,23 @@
+{
+  "presets": [
+    "stage-3",
+    "react"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-object-rest-spread",
+    "transform-flow-strip-types",
+    "transform-class-properties",
+    "syntax-class-properties",
+    "syntax-flow",
+    [
+      "babel-plugin-transform-builtin-extend",
+      {
+        "globals": [
+          "Error",
+          "Array"
+        ]
+      }
+    ]
+  ]
+}
