@@ -1,6 +1,6 @@
 {
   "name": "redux-util",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Redux util for easy work",
   "main": "dist/build.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "jest"
   },
   "directories": {
-    "test": "test"
+    "test": "tests"
   },
   "keywords": [
     "redux",
