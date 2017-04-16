@@ -1,6 +1,6 @@
 {
   "name": "redux-util",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Redux util for easy work",
   "main": "dist/build.js",
   "scripts": {

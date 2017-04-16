@@ -42,10 +42,10 @@ describe(`buildActionCreator("${actionNameWithTwoParams}", "${paramName}", "${pa
             Function
         );
     });
-    test(`actionInstance2(1, 2) equals {type: "${actionNameWithOneParam}", ${paramName}: 1, ${paramName2}: 2}`, () => {
-        const param = 1;
-        const param2 = 2;
-
+    const param = 1;
+    const param2 = 2;
+    test(`actionInstance2(${param}, ${param2}) equals 
+    {type: "${actionNameWithOneParam}", ${paramName}: ${param}, ${paramName2}: ${param2}`, () => {
         const actionResult = {
             type: expect.any(String),
             [paramName]: expect.any(Number),
