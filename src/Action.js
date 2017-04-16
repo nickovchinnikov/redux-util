@@ -7,7 +7,7 @@ import R from 'ramda';
  * @param argNames
  * @returns {Function} action creator
  */
-export const actionCreator = (type: string, ...argNames: Array<string>) =>
+export const buildActionCreator = (type: string, ...argNames: Array<string>) =>
     (...args: Array<string>) => {
         const combinedParams = R.zipObj(
             argNames,
@@ -25,7 +25,7 @@ export const actionCreator = (type: string, ...argNames: Array<string>) =>
  * @param argNames
  * @returns {Function} function $actionCreator(genericType)(...args)
  */
-export const actionCreatorGeneric = (type: string, ...argNames: Array<string>) =>
+export const buildActionCreatorGeneric = (type: string, ...argNames: Array<string>) =>
     (genericType: string) =>
         (...args: Array<string>) => {
             let action = {
