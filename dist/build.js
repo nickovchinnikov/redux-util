@@ -4211,7 +4211,7 @@ module.exports = _curry2(function where(spec, testObj) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.buildActionCreatorGeneric = exports.buildActionCreator = undefined;
+exports.buildActionCreator = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -4241,34 +4241,6 @@ var buildActionCreator = exports.buildActionCreator = function buildActionCreato
         return _extends({
             type: type
         }, combinedParams);
-    };
-};
-
-/**
- * Create generic action
- * @param type
- * @param argNames
- * @returns {Function} function $actionCreator(genericType)(...args)
- */
-var buildActionCreatorGeneric = exports.buildActionCreatorGeneric = function buildActionCreatorGeneric(type) {
-    for (var _len3 = arguments.length, argNames = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
-        argNames[_key3 - 1] = arguments[_key3];
-    }
-
-    return function (genericType) {
-        return function () {
-            for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-                args[_key4] = arguments[_key4];
-            }
-
-            var action = {
-                type: type + '_:' + genericType
-            };
-            var combinedParams = _ramda2.default.zipObj(argNames, args);
-            return _extends({
-                action: action
-            }, combinedParams);
-        };
     };
 };
 
@@ -4337,13 +4309,13 @@ var _Action = __webpack_require__(114);
 Object.defineProperty(exports, 'actionCreator', {
   enumerable: true,
   get: function get() {
-    return _Action.actionCreator;
+    return _interopRequireDefault(_Action).default;
   }
 });
 Object.defineProperty(exports, 'actionCreatorGeneric', {
   enumerable: true,
   get: function get() {
-    return _Action.actionCreatorGeneric;
+    return _interopRequireDefault(_Action).default;
   }
 });
 

@@ -1,2 +1,2 @@
 export {default as Reducer} from './Reducer'
-export {actionCreator, actionCreatorGeneric} from './Action'
+export {default as actionCreator, default as actionCreatorGeneric} from './Action'
