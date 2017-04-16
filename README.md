@@ -1,5 +1,13 @@
 # redux-util
 
+````
+npm install redux-util
+````
+Or
+````
+yarn add redux-util
+````
+
 This library is easy way to work with Redux.
 
 Let's see the some examples
