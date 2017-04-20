@@ -1,2 +1,4 @@
-export {default as Reducer} from './Reducer'
-export {default as actionCreator, default as actionCreatorGeneric} from './Action'
+export * from './Reducer'
+export * from './Action'
+export {actionCreator as buildActionCreator} from './Action'
+export {genericActionCreator as buildGenericActionCreator} from './Action'

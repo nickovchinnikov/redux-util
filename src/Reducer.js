@@ -15,7 +15,7 @@
  * @returns {Function}
  * @constructor
  */
-export default function Reducer (initialState: any, reducersObj: Object) {
+export function Reducer (initialState: any, reducersObj: Object) {
     return function (state: any = initialState, action: Object) {
         if (action && reducersObj.hasOwnProperty(action.type)) {
             return reducersObj[action.type](state, action)
