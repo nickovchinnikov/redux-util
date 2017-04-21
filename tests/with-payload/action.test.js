@@ -2,7 +2,7 @@ import {
     actionCreator,
     genericActionType,
     genericActionCreator
-} from '../src/index';
+} from '../../src/with-payload/index';
 
 describe('action creator', () => {
     it('with one param', () => {
@@ -11,7 +11,9 @@ describe('action creator', () => {
         const creator = actionCreator(type, param);
         expect(creator(1)).toEqual({
             type,
-            [param]: 1
+            payload: {
+                [param]: 1
+            }
         })
     });
 
@@ -21,21 +23,11 @@ describe('action creator', () => {
         const creator = actionCreator(type, ...params);
         expect(creator(1, 2)).toEqual({
             type,
-            [params[0]]: 1,
-            [params[1]]: 2
+            payload: {
+                [params[0]]: 1,
+                [params[1]]: 2
+            }
         })
-    })
-});
-
-describe('genericActionType', () => {
-    it('should create prefixed action type',  () => {
-        const prefixedActionType = genericActionType('prefix', 'type');
-        expect(prefixedActionType).toEqual('prefix_type')
-    });
-
-    it('should create non-prefixed action type', () => {
-        const actionType = genericActionType('', 'type');
-        expect(actionType).toEqual('type')
     })
 });
 
@@ -47,7 +39,9 @@ describe('generic action creator', () => {
         const prefixedAction = genericAction(prefix);
         expect(prefixedAction(1)).toEqual({
             type: genericActionType(prefix, type),
-            param: 1
+            payload: {
+                param: 1
+            }
         })
     })
 });
