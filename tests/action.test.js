@@ -1,19 +1,19 @@
-const buildActionCreator = require('../src/Action').buildActionCreator;
+import {actionCreator, genericActionType, genericActionCreator} from '../src/index';
 
-const actionNameWithOneParam = "testActionWithOneParameter";
-const paramName = "testParam";
+const actionNameWithOneParam = 'testActionWithOneParameter';
+const paramName = 'testParam';
 
-const actionInstance = buildActionCreator(actionNameWithOneParam, paramName);
+const actionInstance = actionCreator(actionNameWithOneParam, paramName);
 
-describe(`buildActionCreator("${actionNameWithOneParam}", "${paramName}") coverage`, () => {
-    test(`buildActionCreator equals function`, () => {
+describe('actionCreator with one param', () => {
+    test('actionCreator equals function', () => {
         expect(
             actionInstance
         ).toBeInstanceOf(
             Function
         );
     });
-    test(`actionInstance(1) equals {type: "${actionNameWithOneParam}", ${paramName}: 1}`, () => {
+    test('should equal type and param', () => {
         const param = 1;
 
         const actionResult = {
@@ -29,13 +29,13 @@ describe(`buildActionCreator("${actionNameWithOneParam}", "${paramName}") covera
     });
 });
 
-const actionNameWithTwoParams = "testActionWithTwoParams";
-const paramName2 = "testParams2";
+const actionNameWithTwoParams = 'testActionWithTwoParams';
+const paramName2 = 'testParams2';
 
-const actionInstance2 = buildActionCreator(actionNameWithTwoParams, paramName, paramName2);
+const actionInstance2 = actionCreator(actionNameWithTwoParams, paramName, paramName2);
 
-describe(`buildActionCreator("${actionNameWithTwoParams}", "${paramName}", "${paramName2}") coverage`, () => {
-    test(`buildActionCreator with two params equals function`, () => {
+describe('actionCreator with two params', () => {
+    test('actionCreator with two params equals function', () => {
         expect(
             actionInstance
         ).toBeInstanceOf(
@@ -44,8 +44,7 @@ describe(`buildActionCreator("${actionNameWithTwoParams}", "${paramName}", "${pa
     });
     const param = 1;
     const param2 = 2;
-    test(`actionInstance2(${param}, ${param2}) equals 
-    {type: "${actionNameWithOneParam}", ${paramName}: ${param}, ${paramName2}: ${param2}`, () => {
+    test('should equal type and params', () => {
         const actionResult = {
             type: expect.any(String),
             [paramName]: expect.any(Number),
@@ -58,4 +57,29 @@ describe(`buildActionCreator("${actionNameWithTwoParams}", "${paramName}", "${pa
             expect.objectContaining(actionResult)
         );
     });
+});
+
+describe('genericActionType', () => {
+    it('should create prefixed action type',  () => {
+        const prefixedActionType = genericActionType('prefix', 'type');
+        expect(prefixedActionType).toEqual('prefix_type')
+    });
+
+    it('should create non-prefixed action type', () => {
+        const actionType = genericActionType('', 'type');
+        expect(actionType).toEqual('type')
+    })
+});
+
+describe('generic action creator', () => {
+    it('should create generic action', () => {
+        const type = 'type';
+        const prefix = 'prefix';
+        const genericAction = genericActionCreator(type, 'param');
+        const prefixedAction = genericAction(prefix);
+        expect(prefixedAction(1)).toEqual({
+            type: genericActionType(prefix, type),
+            param: 1
+        })
+    })
 });

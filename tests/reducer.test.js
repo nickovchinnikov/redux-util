@@ -1,5 +1,4 @@
-const Reducer = require('../src/Reducer').default;
-const buildActionCreator = require('../src/Action').buildActionCreator;
+import {Reducer, buildActionCreator} from '../src/index'
 
 const stateParamName = 'data';
 
@@ -34,7 +33,7 @@ describe(`Reducer(initialState, {
         ${stateParamName}: action.${stateParamName}
     })
 }) coverage`, () => {
-    test(`reducerInstance equals function`, () => {
+    test('reducerInstance equals function', () => {
         expect(
             reducerInstance
         ).toBeInstanceOf(
@@ -61,4 +60,8 @@ describe(`Reducer(initialState, {
             })
         );
     });
+
+    it('should return initial state', () => {
+        expect(reducerInstance(initialState, {})).toEqual(initialState);
+    })
 });
