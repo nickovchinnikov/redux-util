@@ -6,23 +6,35 @@ import compose from 'ramda/src/compose'
 import isEmpty from 'ramda/src/isEmpty'
 import nthArg from 'ramda/src/nthArg'
 
+import type {Action} from './types/Action'
+
+export const actionBuilder = (compose: Function, generic: boolean = false) => {
+    return (type: string, ...argNames: Array<string>) => {
+        const waitValues = (type: string) => {
+            return (...values: Array<any>) => compose({type}, zipObj(argNames, values))
+        };
+        if(generic) {
+            return (genericType: string) => {
+                return waitValues(genericActionType(genericType, type))
+            }
+        }  else {
+            return waitValues(type)
+        }
+    }
+};
+
+const composeAction = (action: Action, payload: Object) => ({
+    ...action,
+    ...payload
+});
+
 /**
- * Standart redux action
+ * Standard redux action
  * @param type
  * @param argNames
  * @returns {Function} action creator
  */
-export const actionCreator = (type: string, ...argNames: Array<string>) =>
-    (...args: Array<any>) => {
-        const combinedParams = zipObj(
-            argNames,
-            args
-        );
-        return {
-            type,
-            ...combinedParams
-        };
-    };
+export const actionCreator = actionBuilder(composeAction);
 
 /**
  * Generates generic action by base action type and genericParam.
@@ -43,5 +55,4 @@ export const genericActionType = ifElse(
  * @param type
  * @param argNames
  */
-export const genericActionCreator = (type: string, ...argNames: Array<string>) =>
-    (genericType: string) => actionCreator(genericActionType(genericType, type), ...argNames);
+export const genericActionCreator = actionBuilder(composeAction, true);

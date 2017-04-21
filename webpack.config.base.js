@@ -1,6 +1,5 @@
 'use strict';
 
-const webpack = require('webpack');
 const path = require('path');
 
 const HOST = process.env.HOST || 'localhost';
@@ -8,10 +7,13 @@ const PORT = process.env.PORT || '3000';
 
 module.exports = {
     context: __dirname,
-    entry: './src/index.js',
+    entry: {
+        dist: './src/index.js',
+        'with-payload': 'with-payload/index.js'
+    },
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'build.js',
+        path: path.join(__dirname),
+        filename: '[name]/build.js',
         libraryTarget: 'umd'
     },
     module: {

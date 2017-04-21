@@ -1,3 +1,5 @@
+// @flow
+
 export * from './Reducer'
 export * from './Action'
 export {actionCreator as buildActionCreator} from './Action'

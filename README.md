@@ -113,3 +113,24 @@ export default Reducer(initialState, {
     })
 });
 ````
+### create actions with payload
+You can also create actions with payload field.
+ To do this just import action creator from 
+ with-payload namespace
+````ecmascript 6
+import {buildActionCreator} from 'redux-util/with-payload'
+import {buildGenericActionCreator} from 'redux-util/with-payload'
+
+const LOAD_DATA = 'LOAD_DATA';
+export const loadDataAction = buildActionCreator(LOAD_DATA, 'data');
+// .....
+dispatch(loadDataAction([1,2,3]))
+/*
+    {
+        type: 'LOAD_DATA',
+        payload: {
+            data: [1,2,3]
+        }
+    }
+ */
+````

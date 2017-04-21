@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1597,6 +1597,100 @@ module.exports = _curry2(function zipObj(keys, values) {
   return out;
 });
 
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.genericActionCreator = exports.actionCreator = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _index = __webpack_require__(12);
+
+var composeAction = function composeAction(action, payload) {
+  return _extends({}, action, {
+    payload: payload
+  });
+};
+
+/**
+ * Standard redux action
+ * @param type
+ * @param argNames
+ * @returns {Function} action creator
+ */
+var actionCreator = exports.actionCreator = (0, _index.actionBuilder)(composeAction);
+
+/**
+ * Generates action creator which waits for the generic action type
+ *
+ * @param type
+ * @param argNames
+ */
+var genericActionCreator = exports.genericActionCreator = (0, _index.actionBuilder)(composeAction, true);
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Action = __webpack_require__(40);
+
+Object.keys(_Action).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Action[key];
+    }
+  });
+});
+
+var _index = __webpack_require__(12);
+
+Object.defineProperty(exports, 'genericActionType', {
+  enumerable: true,
+  get: function get() {
+    return _index.genericActionType;
+  }
+});
+
+var _Reducer = __webpack_require__(8);
+
+Object.keys(_Reducer).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Reducer[key];
+    }
+  });
+});
+Object.defineProperty(exports, 'buildActionCreator', {
+  enumerable: true,
+  get: function get() {
+    return _Action.actionCreator;
+  }
+});
+Object.defineProperty(exports, 'buildGenericActionCreator', {
+  enumerable: true,
+  get: function get() {
+    return _Action.genericActionCreator;
+  }
+});
 
 /***/ })
 /******/ ]);
